@@ -3,6 +3,7 @@ const path = require('path')
 const morgan = require('morgan')
 const handlebars = require('express-handlebars')
 const routes = require('./routes/index')
+const db = require('./config/db/index')
 const app = express()
 const port = 3000
 
@@ -25,6 +26,9 @@ app.set('views',path.join(__dirname, 'views'))
 
 //gọi hàm routes
 routes(app);
+
+//connect to DB
+db.connect();
 
 
 app.listen(port, () => {
