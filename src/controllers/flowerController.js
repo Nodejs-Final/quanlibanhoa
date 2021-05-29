@@ -1,6 +1,14 @@
+const Flowers = require('../models/flower')
 class flowerController{
     home(req, res, next){
-        res.render('trang_1')
+        Flowers.find({})
+            .then(function(flowers) { 
+                flowers = flowers.map((i)=>i.toObject())
+                console.log(flowers)
+                res.render('index',{flowers})
+            })
+            .catch(next) 
+        
     }
 
     pageDetail(req, res, next) {

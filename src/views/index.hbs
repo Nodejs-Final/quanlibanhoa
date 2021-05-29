@@ -136,7 +136,18 @@ a:active {
       </tr>
     </table>    </td>
     <td colspan="3" valign="top" bgcolor="#FFFFFF">
-	<%-dshoa%></td>
+        {{#each flowers}}
+            <div class="card" style="width: 12rem;">
+              <img src="images/{{this.image}}" class="card-img-top" alt="" style="height:200px">
+              <div class="card-body">
+                <h5 class="card-title">{{this.name}}</h5>
+                <p class="card-text">{{this.description}}</p>
+                <a href="" class="btn btn-primary">Mua Ngay</a>
+              </div>
+            </div>
+        {{/each}}
+        
+	  </td>
   </tr>
   <tr>
     <td valign="top" bgcolor="#d3f4ce"><span class="style2">Copyright &copy;2003-2007 <br />
