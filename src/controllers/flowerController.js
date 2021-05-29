@@ -9,7 +9,6 @@ class flowerController{
         Flowers.find({})
             .then(function(flowers) { 
                 flowers = flowers.map((i)=>i.toObject())
-                console.log(flowers)
                 res.render('index',{flowers})
             })
             .catch(next)       
@@ -81,7 +80,15 @@ class flowerController{
 
     search(req, res, next) {
         res.render('trang_tim_kiem')
-    }   
+    }
+    
+    searchFlower(req, res, next) {
+        Flowers.find({name:req.query.name})
+            .then(function(flowers){
+                flowers = flowers.map((i)=>i.toObject())
+                res.render('trang_tim_kiem',{flowers})
+            })
+    }
  }
 
 
