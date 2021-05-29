@@ -88,7 +88,7 @@ a:active {
     </table>    
     <img src="images/BannerSideCreative.jpg" width="200" height="200" /></td>
     <td colspan="3" valign="top"><p>&nbsp;</p>
-      <form action="trang_dang_ky.php" method="post" enctype="multipart/form-data" name="form1">
+      <form action="/register" method="post">
         <table width="70%" border="0" align="center" cellpadding="1" cellspacing="1" bgcolor="#E6F6D9">
           <tr bgcolor="#D7F2C5">
             <td colspan="2" bgcolor="#D7F2C5"><div align="center" class="style4"> ĐĂNG KÝ</div></td>
@@ -96,23 +96,19 @@ a:active {
           <tr>
             <td width="28%"><p class="style7">&nbsp;Tên đăng nhập: </p></td>
             <td width="72%"><label>
-              <input name="ten_dn" type="text" id="ten_dn" size="35">
+              <input name="name" type="text" id="ten_dn" size="35">
             </label></td>
           </tr>
           <tr>
             <td><p class="style7">&nbsp;Mật khẩu:</p></td>
             <td><label>
-              <input name="mat_khau" type="password" id="mat_khau">
+              <input name="password" type="password" id="mat_khau">
             </label></td>
-          </tr>
-          <tr>
-            <td><span class="style7">&nbsp;Mật khẩu xác nhận:</span></td>
-            <td><input name="mat_khau1" type="password" id="mat_khau1"></td>
           </tr>
           <tr>
             <td><p class="style7">&nbsp;Họ và tên: </p></td>
             <td><label>
-              <input name="ho_ten" type="text" id="ho_ten" size="35">
+              <input name="fullName" type="text" id="ho_ten" size="35">
             </label></td>
           </tr>
           <tr>
@@ -123,18 +119,18 @@ a:active {
           </tr>
           <tr>
             <td><span class="style7">&nbsp;Địa chỉ liên lạc:</span></td>
-            <td><input name="dia_chi" type="text" id="dia_chi" size="45"></td>
+            <td><input name="address" type="text" id="dia_chi" size="45"></td>
           </tr>
           <tr>
             <td><p class="style7">&nbsp;Số điện thoại: </p></td>
             <td><label>
-              <input name="so_dt" type="text" id="so_dt">
+              <input name="phoneNumber" type="text" id="so_dt">
             </label></td>
           </tr>
           <tr>
             <td height="35" colspan="2"><p align="center">
               <label>
-              <input type="submit" name="Submit" value="Đăng ký">
+              <button type="submit">Đăng ký</button>
               </label>
             </p></td>
           </tr>
