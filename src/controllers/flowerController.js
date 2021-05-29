@@ -22,7 +22,12 @@ class flowerController{
             .catch(next)
     }
     pageDetail(req, res, next) {
-        res.render('trang_chi_tiet_hoa')
+        Flowers.findById({_id:req.params.id})
+        .then(function(flowers) {
+            console.log(flowers.toObject())
+            res.render('trang_chi_tiet_hoa',{flowers:flowers.toObject()})
+        })
+        .catch(next)  
     }
 
     register(req, res, next) {
