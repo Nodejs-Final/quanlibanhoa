@@ -21,13 +21,18 @@ class flowerController{
 
     createFlower(req, res, next){
         console.log(req.body)
-        const flower = new Flower(req.body)
+        const flower = new Flowers(req.body)
         flower.save()
             .then(() =>res.redirect('/create'))
             .catch(next)
     }
     pageDetail(req, res, next) {
-        res.render('trang_chi_tiet_hoa')
+        Flowers.findById({_id:req.params.id})
+        .then(function(flowers) {
+            console.log(flowers.toObject())
+            res.render('trang_chi_tiet_hoa',{flowers:flowers.toObject()})
+        })
+        .catch(next)  
     }
 
     register(req, res, next) {
