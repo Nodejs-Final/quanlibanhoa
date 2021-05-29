@@ -91,7 +91,7 @@ a:active {
     </table>	</form></td>
     <td width="24%" valign="top"><table width="100%" border="0">
       <tr>
-        <td valign="top"><div align="center" class="style5">          Có thể thanh toán bằng</div></td>
+        <td valign="top"><div align="center" class="style5">Có thể thanh toán bằng</div></td>
       </tr>
       <tr>
         <td valign="top"><div align="center" class="style10">
@@ -111,10 +111,10 @@ a:active {
     <td valign="top" bgcolor="#D3F4CE"><span class="style3">&nbsp;Danh mục hoa</span></td>
     <td colspan="3" valign="top" background="images/nen.jpg"><table width="100%" border="0" cellpadding="0" cellspacing="0">
       <tr align="center" class="style10" bgcolor="#CCFFCC">
-        <td width="25%" height="23" bgcolor="#CCFFCC"><strong><a href="trang_1.php"><strong>Trang chủ</strong></a></td>
-        <td width="25%"><strong><a href="/timkiem"><strong>Tìm kiếm bó hoa</strong></a></td>
-        <td width="28%"><strong><a href="trang_3.php"><strong>Thêm bó hoa mới</strong></a></td>
-        <td width="22%"><strong><a href="trang_dang_ky.php">Đăng ký mới</a></strong></td>
+        <td width="25%" height="23" bgcolor="#CCFFCC"><strong><a href="/"><strong>Trang chủ</strong></a></td>
+        <td width="25%"><strong><a href="/search"><strong>Tìm kiếm bó hoa</strong></a></td>
+        <td width="28%"><strong><a href="/create"><strong>Thêm bó hoa mới</strong></a></td>
+        <td width="22%"><strong><a href="/register">Đăng ký mới</a></strong></td>
       </tr>
     </table></td>
   </tr>
@@ -122,10 +122,13 @@ a:active {
     <td valign="top" bgcolor="#F4FBEB"><table width="100%" border="0" cellpadding="0" cellspacing="0" background="images/nen.jpg">
       <tr>
         <td bgcolor="#C7EAB0"><table width="100%" border="0" bgcolor="#F4FBEB">
+              {{#each flowers}}
             <tr>
               <td>
-			 <%-dslh%>		  </td>
+                {{this.category}}
+			        </td>
             </tr>
+              {{/each}}
             <tr>
               <td>&nbsp;</td>
             </tr>
@@ -136,17 +139,23 @@ a:active {
       </tr>
     </table>    </td>
     <td colspan="3" valign="top" bgcolor="#FFFFFF">
-        {{#each flowers}}
+      <div class="container">
+        <div class="row">
+          {{#each flowers}}
+          <div class="col-sm-3 mt-4">
             <div class="card" style="width: 12rem;">
-              <img src="images/{{this.image}}" class="card-img-top" alt="" style="height:200px">
+              <img src="images/{{this.image}}" class="card-img-top" alt="" style="height:180px">
               <div class="card-body">
-                <h5 class="card-title">{{this.name}}</h5>
-                <p class="card-text">{{this.description}}</p>
-                <a href="" class="btn btn-primary">Mua Ngay</a>
+                <h5 class="card-title"><a href="/flower/{{this._id}}" style="text-decoration:none">{{this.name}}</a></h5>
+                <p class="card-text">{{this.price}}</p>
+                <a href="/flower/{{this._id}}" class="btn btn-outline-info">Mua Ngay</a>
+                <a href=""><i class="fas fa-shopping-cart"></i></a>
               </div>
             </div>
-        {{/each}}
-        
+          </div>
+          {{/each}}
+        </div>
+      </div>
 	  </td>
   </tr>
   <tr>
