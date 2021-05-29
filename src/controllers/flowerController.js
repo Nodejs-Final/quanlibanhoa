@@ -16,7 +16,7 @@ class flowerController{
 
     createFlower(req, res, next){
         console.log(req.body)
-        const flower = new Flower(req.body)
+        const flower = new Flowers(req.body)
         flower.save()
             .then(() =>res.redirect('/create'))
             .catch(next)
