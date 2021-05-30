@@ -89,6 +89,41 @@ class flowerController{
                 res.render('trang_tim_kiem',{flowers})
             })
     }
+
+    searchRealTime(req, res, next){
+        //Declare variables
+        let hint = "";
+        let response = "";
+        let searchQ = req.body.search.toLowerCase(); 
+        let filterNum = 1;
+
+        if(searchQ.length > 0){
+        Flowers.find(function(err, results){
+            if(err){
+                console.log(err);
+            }else{
+                results.forEach(function(sResult){
+                    if(sResult.name.toLowerCase().indexOf(searchQ) !== -1){
+                        if(hint === ""){
+                            hint="<a href='/page-detail/" + sResult._id + "' target='_self'>" + sResult.name + "</a>";
+                        }else if(filterNum < 20){
+                            hint = hint + "<br /><a href='/page-detail/" + sResult._id + "' target='_self'>" + sResult.name + "</a>";
+                            filterNum++;
+                        }
+                    }
+                })
+            }
+            if(hint === ""){
+                response = "no suggestion"
+            }else{
+                response = hint;
+            }
+        
+            res.send({response: response});
+        });
+    }
+
+}
  }
 
 

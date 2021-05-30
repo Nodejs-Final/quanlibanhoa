@@ -1,7 +1,3 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Cua hang Hoa Dep</title>
 <style type="text/css">
 <!--
 .style1 {color: #FF66FF}
@@ -72,7 +68,7 @@ a:active {
       </tr>
     </table></td>
     <td colspan="3" valign="top">	
-	<form method="get" action="/search/flower">
+	<form method="get" action="/search/flower" >
       <table width="100%"  border="0" cellpadding="0" cellspacing="0" bordercolor="#BBE09D">
         <tr bgcolor="#F4F8E9">
           <td colspan="2" align="center" class="style1"><span class="style4"> T&igrave;m ki&#7871;m b&oacute; hoa </span></td>
@@ -81,7 +77,9 @@ a:active {
           <td width="36%" bordercolor="#FFFFFF" bgcolor="#E8F6DC"><blockquote class="style10">
             <p>T&ecirc;n b&oacute; hoa: </p>
           </blockquote></td>
-          <td width="64%" bordercolor="#FFFFFF" bgcolor="#E8F6DC"><input name="name" type="text" id="ten" size="30"></td>
+          <td width="64%" bordercolor="#FFFFFF" bgcolor="#E8F6DC"><input name="name" type="text" id="ten" size="30" onkeyup="showResult(this.value)">
+          <div id="livesearch" class="hide"></div>
+          </td>
         </tr>
         <tr>
           <td height="40" colspan="2" align="center" bgcolor="#E0F1CD">
@@ -98,13 +96,13 @@ a:active {
               <td bgcolor="#C7EAB0">&nbsp;<span class="style3">Danh mục</span></td>
             </tr>
             <tr bgcolor="#F4FBEB">
-              <td>&nbsp;<a href="trang_1.php" class="style10">Trang ch&#7911;</a></td>
+              <td>&nbsp;<a href="/" class="style10">Trang chủ</a></td>
             </tr>
             <tr bgcolor="#F4FBEB">
-              <td>&nbsp;<a href="trang_2.php" class="style10">T&igrave;m ki&#7871;m b&oacute; hoa </a></td>
+              <td>&nbsp;<a href="/search" class="style10">Tìm kiếm bó hoa</a></td>
             </tr>
             <tr bgcolor="#F4FBEB">
-              <td>&nbsp;<a href="trang_3.php" class="style10">Th&ecirc;m m&#7899;i b&oacute; hoa </a></td>
+              <td>&nbsp;<a href="/create" class="style10">Thêm mới bó hoa</a></td>
             </tr>
           </table>		  </td>
       </tr>

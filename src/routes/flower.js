@@ -11,6 +11,7 @@ router.get('/page-detail/:id', flowerController.pageDetail)
 router.get('/register', flowerController.register)
 router.post('/login',flowerController.login)
 router.post('/register',flowerController.registerUser)
+router.post('/search', flowerController.searchRealTime)
 router.get('/search/flower',flowerController.searchFlower)
 router.get('/search', flowerController.search)
 
