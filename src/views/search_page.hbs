@@ -1,0 +1,21 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+    <div class="container">
+        <div class="row">
+          {{#each flowers}}
+          <div class="col-sm-3 mt-4">
+            <div class="card" style="width: 12rem;">
+              <img src="images/{{this.image}}" class="card-img-top" alt="" style="height:180px">
+              <div class="card-body">
+                <h5 class="card-title"><a href="/page-detail/{{this._id}}" style="text-decoration:none">{{this.name}}</a></h5>
+                <p class="card-text">{{this.price}}</p>
+                <a href="/page-detail/{{this._id}}" class="btn btn-outline-info">Mua Ngay</a>
+                <a href=""><i class="fas fa-shopping-cart"></i></a>
+              </div>
+            </div>
+          </div>
+          {{else}}
+          <h5>Không có hoa nào như bạn tìm kiếm</h5>
+          {{/each}}
+        </div>
+      </div>

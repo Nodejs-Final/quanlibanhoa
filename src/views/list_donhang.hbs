@@ -1,0 +1,62 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <%- include('../partials/head'); %>
+</head>
+
+<body>
+  <header>
+    <%- include('../partials/header'); %>
+  </header>
+
+  <main class="p-3">
+    <table class="table table-striped p-5" width="80%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+      <thead class="thead-light">
+        <tr>
+          <th>#</th>
+          <th>Họ tên</th>
+          <th>Địa chỉ</th>
+          <th class="text-right">Điện thoại</th>
+          <th class="text-right">Ngày mua</th>
+          <th class="text-right">Tổng tiền</th>
+          <th class="text-right">Thao tác</th>
+        </tr>
+      </thead>
+
+      <% for(var i=donhangs.length-1; i>=0 ; i--) { %>
+        <tr>
+          <th>
+            <%= donhangs.length - i %>
+          </th>
+          <td>
+            <%=donhangs[i].hoten %>
+          </td>
+          <td>
+            <%=donhangs[i].diachi %>
+          </td>
+          <td class="text-right">
+            <%=donhangs[i].dienthoai %>
+          </td>
+          <% let createdDate=new Date(donhangs[i].createdAt) %>
+            <td class="text-right">
+              <%= createdDate.getDate() %>/<%= createdDate.getMonth() %>/<%= createdDate.getFullYear() %>
+            </td>
+            <td class="text-right">
+              <%=donhangs[i].tongtien %>
+            </td>
+            <td class="d-flex justify-content-end">
+              <a class="mr-2" href="/orders/detail/<%= donhangs[i]._id %>">
+                <button class="btn btn-primary">Chi tiết</button>
+              </a>
+            </td>
+        </tr>
+        <% } %>
+    </table>
+  </main>
+
+  <footer>
+    <%- include('../partials/footer'); %>
+  </footer>
+</body>
+
+</html>

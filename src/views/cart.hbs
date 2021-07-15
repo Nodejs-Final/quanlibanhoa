@@ -1,0 +1,112 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <%- include('../partials/head'); %>
+  </head>
+
+  <body>
+    <header><%- include('../partials/header'); %></header>
+
+    <main class="p-3">
+      <table
+        class="table table-striped p-5"
+        width="80%"
+        border="0"
+        cellpadding="0"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+      >
+        <thead class="thead-light">
+          <tr class="tb-sticky">
+            <th>#</th>
+            <th>Tên hoa</th>
+            <th class="text-right">Đơn giá</th>
+            <th class="text-right">Số lượng</th>
+            <th class="text-right">Thành tiền</th>
+            <th class="text-right">Thao tác</th>
+          </tr>
+        </thead>
+        <% for(var i=0; i < cartItems.length; i++) { %>
+        <tr>
+          <th><%= i+1 %></th>
+          <td><%=cartItems[i].tenhoa %></td>
+          <td class="text-right"><%=cartItems[i].giaban %></td>
+          <td class="d-flex justify-content-end">
+            <a href="/cart/decrease/<%= cartItems[i]._id %>">
+              <buton class="btn btn-info" style="font-weight: bold">-</buton>
+            </a>
+            <p class="mr-3 ml-3"><%=cartItems[i].soluong %></p>
+            <a href="/cart/increase/<%= cartItems[i]._id %>">
+              <buton class="btn btn-info" style="font-weight: bold">+</buton>
+            </a>
+          </td>
+          <td  class="text-right"><%=cartItems[i].giaban*cartItems[i].soluong %></td>
+          <td class="d-flex justify-content-end"">
+            <% let _id = cartItems[i]._id %> 
+            <a class="mr-2" onclick="return confirmDeleteItem(15)" href="/cart/remove/<%= cartItems[i]._id %>">
+              <!--  -->
+              <button class="btn btn-danger">Xóa</button>
+            </a>
+          </td>
+        </tr>
+        <% } %>
+
+        <thead class="thead-light">
+          <tr>
+            <th colspan="4">Tổng tiền</th>
+            <th  class="text-right"><%= total %></th>
+            <th></th>
+          </tr>
+        </thead>
+      </table>
+
+      <form id="" name="" method="post" action="/cart/order" style="font-size: 1.25rem;"
+        class="container">
+        <div align="center" style="font-size: 2.5rem;">Thông tin đặt hàng</div>
+        <div class="form-group">
+          <input 
+            name="khid" type="hidden" 
+            id="khid" class="form-control" 
+            value="<%= userInfo._id %>"/>
+        </div>
+        <div class="form-group">
+          <label for="fullname">Họ tên</label>
+          <input 
+            name="fullname" type="text" 
+            id="fullname" class="form-control" 
+            value="<%= userInfo.hoten %>"
+            required/>
+        </div>
+        <div class="form-group">
+          <label for="address">Địa chỉ giao hàng</label>
+          <input 
+            name="address" type="text" 
+            id="address" class="form-control" 
+            value="<%= userInfo.diachi %>"
+            required/>
+        </div>
+        <div class="form-group">
+          <label for="phoneNumber">Điện thoại</label>
+          <input 
+            name="phoneNumber" type="text" 
+            id="phoneNumber" class="form-control" 
+            value="<%= userInfo.dienthoai %>"
+            required/>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input 
+            name="email" type="text" 
+            id="email" class="form-control" 
+            value="<%= userInfo.email %>"
+            required/>
+        </div>
+        
+        <div style="display: flex; flex-direction: column; align-items: center;">
+          <button type="submit" class="btn btn-info w-100">Đặt hàng</button>
+        </div>
+      </form>
+    </main>
+
+    <footer><%- include('../partials/footer'); %></footer>
+  </body>
+</html>

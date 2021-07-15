@@ -4,11 +4,28 @@
   
   #livesearch {
     background-color: gainsboro;
-    border-color: black;
+    border-color: rgb(162, 235, 248);
     border-width: thin;
     border-style: solid;
-    width: 170px;
-    height: 100px;
+    width: 200px;
+    height: auto;
+    z-index: 999;
+    top: 38px;
+    right: 7px;
+    position: absolute;
+    overflow:auto;
+    box-shadow: 5px 5px 5px rgb(135, 221, 243);
+    border-radius:5px;
+    padding:10px;
+  }
+
+  #livesearch a{
+    color: black;
+    font-weight: 600;
+    font-size:16px;
+    font-family: 'Times New Roman', Times, serif;
+    display:block;
+    margin: 2px 2px;
   }
   
   .hide {

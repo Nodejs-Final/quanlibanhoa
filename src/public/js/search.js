@@ -7,6 +7,7 @@ function showResult(str){
         search.removeClass("hide");
     }
 
+    console.log('quang');
     $.ajax({
         url: "/search",
         method: "POST",

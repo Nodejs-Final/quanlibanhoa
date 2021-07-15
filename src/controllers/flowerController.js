@@ -1,5 +1,8 @@
 const Flowers = require('../models/flower')
+const loaihoa = require('../models/loaihoa')
 const Customer = require('../models/customer')
+const sendEmail = require('../service/email')
+const { templatesEmail } = require('../service/templateEmail')
 const {registerValidation,loginValidation} = require("../config/auth/validation")
 const bcrypt = require("bcryptjs")
 
@@ -9,13 +12,42 @@ class flowerController{
         Flowers.find({})
             .then(function(flowers) { 
                 flowers = flowers.map((i)=>i.toObject())
-                res.render('index',{flowers})
+                res.render('index1',{flowers,
+                    userInfo: req.session.userInfo !== '' ? req.session.userInfo : '',
+                })
             })
             .catch(next)       
     }
 
     create(req, res, next){
-        res.render('user/create')
+        res.render('create_hoa')
+    }
+
+    listFlowers(req, res, next){
+        Flowers.find({})
+            .then(function(flowers) { 
+                flowers = flowers.map((i)=>i.toObject())
+                res.render('list_hoa',{flowers,
+                    userInfo: req.session.userInfo !== '' ? req.session.userInfo : '',
+                })
+            })
+            .catch(next)
+    }
+
+    sendEmail(req, res, next){
+        sendEmail('quachtuananh2016@gmail.com', 'Đơn hàng FashiShop',templatesEmail("quang"))
+        res.send('đã gửi')
+    }
+
+    listloaihoa(req, res, next){
+        loaihoa.find({})
+            .then(function(flowers) { 
+                flowers = flowers.map((i)=>i.toObject())
+                res.render('list_loaihoa',{flowers,
+                    userInfo: req.session.userInfo !== '' ? req.session.userInfo : '',
+                })
+            })
+            .catch(next)     
     }
 
     createFlower(req, res, next){
@@ -29,13 +61,20 @@ class flowerController{
         Flowers.findById({_id:req.params.id})
         .then(function(flowers) {
             console.log(flowers.toObject())
-            res.render('trang_chi_tiet_hoa',{flowers:flowers.toObject()})
+            res.render('detail_hoa',{flowers:flowers.toObject()})
         })
         .catch(next)  
     }
 
     register(req, res, next) {
-        res.render('trang_dang_ky')
+        res.render('register_form',{
+            layout: ''
+        })
+    }
+
+    logout(req, res, next){
+        req.session.destroy()
+        return res.redirect('/')
     }
 
     async registerUser(req, res, next){
@@ -57,10 +96,15 @@ class flowerController{
             newUser.password = hashPass
             try{
                 const User = await newUser.save()
+                req.session.userInfo = User
                 res.redirect('/');
             }catch(err){
                 res.status(400).send(err);
             }
+    }
+
+    GetLogin(req, res, next){
+        res.render('login_form',{layout:''})
     }
 
     async login(req, res, next){
@@ -75,18 +119,22 @@ class flowerController{
         const passLogin = await bcrypt.compare(req.body.password, userLogin.password);
         if(!passLogin) return res.status(400).send("Mật khẩu không hợp lệ")
 
-        res.redirect('/');
-    }
+        req.session.userInfo = await Customer.findOne({name: req.body.name})
 
-    search(req, res, next) {
-        res.render('trang_tim_kiem')
+        // console.log(req.session.userInfo);
+
+        res.redirect('/');
     }
     
     searchFlower(req, res, next) {
-        Flowers.find({name:req.query.name})
+        const name = req.query.name
+        Flowers.find({})
             .then(function(flowers){
+                flowers = flowers.filter((flower) => {
+                    return flower.name.toLowerCase().indexOf(name.toLowerCase()) !== -1
+                })
                 flowers = flowers.map((i)=>i.toObject())
-                res.render('trang_tim_kiem',{flowers})
+                res.render('search_page',{flowers})
             })
     }
 
@@ -114,7 +162,7 @@ class flowerController{
                 })
             }
             if(hint === ""){
-                response = "no suggestion"
+                response = "<b>Không tìm thấy</b>"
             }else{
                 response = hint;
             }

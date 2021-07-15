@@ -16,4 +16,3 @@
 STT | Name | Roles | Github
 --- | ---- | ----- | ------
 1 | Đặng Ngọc Quang | 2 | [@.:peach:](https://github.com/quang1410)
-2 | Đỗ Văn Sa | 3 | [@.:pear:](https://github.com/)

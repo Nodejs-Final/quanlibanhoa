@@ -1,0 +1,71 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Cua hang Hoa Dep</title>
+    <link href="./css/index.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+
+  <body style="display: flex; justify-content: center; align-items: center">
+    <div
+      class="container w-auto p-4 m-5"
+      style="min-width: 400px; max-width: 500px; background-color: #ecebfd; border-radius: 0.5rem"
+    >
+      <form
+        id="form1"
+        name="form1"
+        method="post"
+        action="/register"
+        style="font-size: 1.25rem"
+      >
+        <div align="center" style="font-size: 2.5rem">Đăng ký</div>
+        <div class="form-group">
+          <input name="name" type="text" id="ten_dn" class="form-control" 
+            placeholder="Nhập tên đăng nhập" required/>
+        </div>
+        <div class="form-group">
+          <input
+            type="password"
+            name="password"
+            id="mat_khau"
+            class="form-control"
+            placeholder="Mật khẩu"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <input name="fullName" type="text" id="ten_dn" class="form-control" 
+            placeholder="Họ tên" required/>
+        </div>
+        <div class="form-group">
+          <input name="email" type="email" id="email" class="form-control" 
+            placeholder="Email" required/>
+        </div>
+        <div class="form-group">
+          <input name="address" type="text" id="address" class="form-control" 
+            placeholder="Địa chỉ" required/>
+        </div>
+        <div class="form-group">
+          <input name="phoneNumber" type="tel" id="phone" class="form-control" 
+            placeholder="Số điện thoại" required/>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center">
+          <button type="submit" class="btn btn-primary w-100">Đăng ký</button>
+          <div style="font-size: 1rem">
+            Có tài khoản <a href="/login" class="text-danger">Đăng nhập</a>
+          </div>
+          <a href="/" class="text-primary" style="font-size: 1rem"
+            >Quay lại trang chủ</a
+          >
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

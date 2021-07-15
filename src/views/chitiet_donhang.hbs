@@ -1,0 +1,50 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <%- include('../partials/head'); %>
+  </head>
+
+  <body>
+    <header><%- include('../partials/header'); %></header>
+
+    <main class="p-3">
+      <table
+        class="table table-striped p-5"
+        width="80%"
+        border="0"
+        cellpadding="0"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+      >
+        <thead class="thead-light">
+          <tr class="tb-sticky">
+            <th>#</th>
+            <th>Tên hoa</th>
+            <th class="text-right">Đơn giá</th>
+            <th class="text-right">Số lượng</th>
+            <th class="text-right">Thành tiền</th>
+          </tr>
+        </thead>
+        <% for(var i=0; i < cartItems.length; i++) { %>
+        <tr>
+          <th><%= i+1 %></th>
+          <td><%=cartItems[i].tenhoa %></td>
+          <td class="text-right"><%=cartItems[i].giaban %></td>
+          <td class="d-flex justify-content-end">
+            <%=cartItems[i].soluong %>
+          </td>
+          <td  class="text-right"><%=cartItems[i].giaban*cartItems[i].soluong %></td>
+        </tr>
+        <% } %>
+
+        <thead class="thead-light">
+          <tr>
+            <th colspan="4">Tổng tiền</th>
+            <th  class="text-right"><%= total %></th>
+          </tr>
+        </thead>
+      </table>
+    </main>
+
+    <footer><%- include('../partials/footer'); %></footer>
+  </body>
+</html>
