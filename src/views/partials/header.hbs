@@ -39,58 +39,57 @@
                             <img src="/images/IconCardVisa.gif" width="37" height="23" />
                         </div>
                     </td>
-                </tr>
-
-                    <tr>
-                        {{#if userInfo}}
-                            <td valign="top">Xin Chào {{userInfo.name}}</td>
-                        {{/if}}
-                    </tr>
-
+                </tr>                 
             </table>
         </td>
     </tr>
 </table>
 
-<nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg" style="background-color: #2c2c2c;">
+    {{!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-    </button>
+    </button> --}}
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="container">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="/">Trang chủ<span class="sr-only">(current)</span></a>
+                <a class="nav-link text-white" href="/" >Home<span class="sr-only">(current)</span></a>
             </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="/loaihoa">Danh sách loại hoa</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="/hoa">Danh sách hoa</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="/orders">Danh sách đơn hàng</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="/cart">Giỏ hàng</a>
-            </li>
+            
+            {{#if total}}
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/cart"><i class="fas fa-shopping-cart"> {{total}} vnd</i></a>
+                </li>
+            {{else}}
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/cart"><i class="fas fa-shopping-cart"></i></a>
+                </li>
+            {{/if}}
         </ul>
         <form class="form-inline my-2 mr-5" method="GET" action="/search/flower">
             <div class="d-flex flex-column position-relative">
                 <input name="name" class="form-control mr-sm-2" type="text" id="ten" onkeyup="showResult(this.value)" autocomplete="off" placeholder="Nhập tên hoa cần tìm" aria-label="Search">
                 <div id="livesearch" class="hide"></div>
             </div>
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm</button>
+            <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Tìm</button>
         </form>
         {{#if userInfo}}
-            <a href="/logout"><button class="btn btn-outline-danger my-2 my-sm-0" type="button">Đăng xuất</button></a>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{userInfo.name}}
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="/loaihoa"><i class="far fa-list-alt"></i> Danh sách loại hoa</a>
+                    <a class="dropdown-item" href="/hoa"><i class="fas fa-list-alt"></i> Danh sách hoa</a>
+                    <a class="dropdown-item" href="/bill"><i class="far fa-list-alt"></i> Danh sách đơn hàng</a>
+                    <a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+                </div>
+            </div>
         {{else}}
-            <a href="/login"><button class="btn btn-success my-2 my-sm-0" type="button">Đăng nhập</button></a>
+            <a href="/login"><button class="btn btn-info my-2 my-sm-0" type="button">Đăng nhập</button></a>
         {{/if}}
+        </div>
     </div>
 </nav>
 <div class="position-fixed" style="right: 10px; bottom: 10px;"><a href="#top"><i class="fa fa-chevron-circle-up fa-4x"></i></a></div>

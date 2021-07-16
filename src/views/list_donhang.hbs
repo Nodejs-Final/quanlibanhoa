@@ -1,62 +1,42 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
-<head>
-  <%- include('../partials/head'); %>
-</head>
-
-<body>
-  <header>
-    <%- include('../partials/header'); %>
-  </header>
 
   <main class="p-3">
     <table class="table table-striped p-5" width="80%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
       <thead class="thead-light">
         <tr>
-          <th>#</th>
+          <th>STT</th>
           <th>Họ tên</th>
           <th>Địa chỉ</th>
           <th class="text-right">Điện thoại</th>
-          <th class="text-right">Ngày mua</th>
           <th class="text-right">Tổng tiền</th>
           <th class="text-right">Thao tác</th>
         </tr>
       </thead>
 
-      <% for(var i=donhangs.length-1; i>=0 ; i--) { %>
+      {{#each listBill}}
         <tr>
           <th>
-            <%= donhangs.length - i %>
+            {{ sum @index 1}}
           </th>
           <td>
-            <%=donhangs[i].hoten %>
+            {{this.fullName}}
           </td>
           <td>
-            <%=donhangs[i].diachi %>
+            {{this.address}}
           </td>
           <td class="text-right">
-            <%=donhangs[i].dienthoai %>
+            {{this.phoneNumber}}
           </td>
-          <% let createdDate=new Date(donhangs[i].createdAt) %>
             <td class="text-right">
-              <%= createdDate.getDate() %>/<%= createdDate.getMonth() %>/<%= createdDate.getFullYear() %>
-            </td>
-            <td class="text-right">
-              <%=donhangs[i].tongtien %>
+              {{this.total}}
             </td>
             <td class="d-flex justify-content-end">
-              <a class="mr-2" href="/orders/detail/<%= donhangs[i]._id %>">
+              <a class="mr-2" href="/bill/{{this._id}}">
                 <button class="btn btn-primary">Chi tiết</button>
               </a>
             </td>
         </tr>
-        <% } %>
+        {{/each}}
     </table>
   </main>
-
-  <footer>
-    <%- include('../partials/footer'); %>
-  </footer>
-</body>
-
-</html>

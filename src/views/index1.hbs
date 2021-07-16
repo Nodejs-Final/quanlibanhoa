@@ -4,21 +4,28 @@
           <tr bgcolor="#F4FBEB">
               <td valign="top" bgcolor="#F4FBEB" style="width: 250px;">
                   <div class="list-group m-1">
-                          <a href="" class="list-group-item list-group-item-action">
-                              Hoa Xuân
+                      {{#each loaihoa}}
+                          <a href="/fill?name={{this.maloai}}" class="text-dark list-group-item list-group-item-action">
+                            <i class="fas fa-fan"></i>
+                            <b>
+                                {{this.tenloai}}
+                            </b>
                           </a>
+                        {{/each}}
                   </div>
-                  <hr class="m-2">
-                  <div class="m-1 p-1 card">
-                    <p><b>Thông tin giỏ hàng</b></p>
-                    <p><b>Số lượng:</b>  0 </p>
-                    <p><b>Tổng tiền:</b> 0VND  </p>
-                    <a href="/cart" class="btn btn-info text-white">Đến giỏ hàng</a>
-                  </div>
+                  
+                  {{!-- <hr class="m-2"> --}}
+                  {{!-- <div class="m-1 p-1 card">
+                    <p><b>Giỏ hàng của bạn</b></p>
+                    <p><b>Số lượng:</b> </p>
+                    <p><b>Tổng tiền:</b>  VND  </p>
+                    <a href="/cart" class="btn btn-success text-white">Đến giỏ hàng</a>
+                  </div> --}}
+                  
               </td>
               <td colspan="3" valign="top" bgcolor="#FFFFFF">
-                      <h1>Không tìm thấy hoa</h1>
-                  <div class="container">
+                  {{#if flowers}}
+                    <div class="container">
                     <div class="row">
                     {{#each flowers}}
                     <div class="col-sm-3 mt-4">
@@ -27,14 +34,19 @@
                         <div class="card-body">
                             <h5 class="card-title"><a href="/page-detail/{{this._id}}" style="text-decoration:none">{{this.name}}</a></h5>
                             <p class="card-text">{{this.price}}</p>
-                            <a href="/page-detail/{{this._id}}" class="btn btn-outline-info">Mua Ngay</a>
-                            <a href=""><i class="fas fa-shopping-cart"></i></a>
+                            <div class="d-flex flex-row align-items-center">
+                              <a href="/page-detail/{{this._id}}" class="btn btn-outline-success">Xem Thêm</a>
+                              <a href="/addCart/{{this._id}}"><i class="fas fa-shopping-cart ml-1" style="font-size:25px"></i></a>
+                            </div>
                         </div>
                         </div>
                     </div>
                     {{/each}}
                     </div>
-                </div>
+                    </div>
+                  {{else}}
+                    <h1>Không tìm thấy hoa</h1>
+                  {{/if}}
                   </table>
               </td>
           </tr>

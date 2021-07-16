@@ -9,8 +9,10 @@
               <div class="card-body">
                 <h5 class="card-title"><a href="/page-detail/{{this._id}}" style="text-decoration:none">{{this.name}}</a></h5>
                 <p class="card-text">{{this.price}}</p>
-                <a href="/page-detail/{{this._id}}" class="btn btn-outline-info">Mua Ngay</a>
-                <a href=""><i class="fas fa-shopping-cart"></i></a>
+                <div class="d-flex flex-row align-items-center">
+                  <a href="/page-detail/{{this._id}}" class="btn btn-outline-success">Xem Thêm</a>
+                  <a href="/addCart/{{this._id}}"><i class="fas fa-shopping-cart ml-1" style="font-size:25px"></i></a>
+                </div>
               </div>
             </div>
           </div>

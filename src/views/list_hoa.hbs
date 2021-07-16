@@ -7,6 +7,7 @@
       <table class="table table-striped p-5" width="80%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
         <thead class="thead-light" >
           <tr class="tb-sticky">
+            <th>STT</th>
             <th>Tên hoa</th>
             <th>Mã loại</th>
             <th>Giá bán</th>
@@ -18,19 +19,19 @@
         
         {{#each flowers}}
           <tr>
-            {{!-- <th>1</th> --}}
+            <th>{{ sum @index 1}}</th>
             <td> {{this.name}} </td>
             <td> {{this.category}} </td>
             <td> {{this.price}} </td>
             <td> <img src="/images/{{this.image}}" alt="ảnh hóa"> </td>
             <td> {{this.description}}</td> </td>
             <td class="d-flex">
-              <a class="mr-2" href="/update/{{this._id}}>">
-                <button class="btn btn-primary">Sửa</button>
+              <a href="hoa/update/{{this._id}}" class="mr-2">
+                <button class="btn btn-primary">Sửa</button>             
               </a>
-              <a class="mr-2" href="/delete/{{this._id}}>">
-                <button class="btn btn-danger">Xóa</button>
-              </a>
+              <form method="POST" action="/hoa/remove/{{this._id}}?_method=DELETE">
+                <button class="btn btn-danger" type="submit">Xóa</button>             
+              </form>
             </td>
           </tr>
         {{/each}}

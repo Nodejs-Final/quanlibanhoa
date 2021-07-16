@@ -1,7 +1,5 @@
-const templateEmail = (data) => {
-    return (
-        `     
-    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+module.exports = function templateEmail(bill){
+    return `<table border="0" cellpadding="0" cellspacing="0" width="100%">
     <tr>
         <td align="center" style="background-color: #eeeeee;" bgcolor="#eeeeee">
             <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:600px;">
@@ -11,7 +9,7 @@ const templateEmail = (data) => {
                             <table align="left" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:300px;">
                                 <tr>
                                     <td align="left" valign="top" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 36px; font-weight: 800; line-height: 48px;" class="mobile-center">
-                                        <h1 style="font-size: 36px; font-weight: 800; margin: 0; color: #ffffff;">FashiShop</h1>
+                                        <h1 style="font-size: 36px; font-weight: 800; margin: 0; color: #ffffff;">SHOP Hoa Tươi</h1>
                                     </td>
                                 </tr>
                             </table>
@@ -43,13 +41,26 @@ const templateEmail = (data) => {
                                 </td>
                             </tr>
                             <tr>
+                                <td align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding-top: 10px;">
+                                    <p style="font-size: 16px; font-weight: 400; line-height: 24px; color: #777777;">Hi ${bill.fullName}</p>
+                                    <p style="font-size: 16px; font-weight: 400; line-height: 24px; color: #777777;">We have finish processing your order</p>
+                                </td>
+                            </tr>
+                            <tr>
                                 <td align="left" style="padding-top: 20px;">
                                     <table cellspacing="0" cellpadding="0" border="0" width="100%">
                                         <tr>
                                             <td width="75%" align="left" bgcolor="#eeeeee" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;"> Order Confirmation # </td>
-                                            <td width="25%" align="left" bgcolor="#eeeeee" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;">${Math.floor(Math.random() * 10000)}</td>
+                                            <td width="25%" align="left" bgcolor="#eeeeee" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;">${bill._id}</td>
                                         </tr>
-        
+                                        ${bill.dsmh.map((item)=>{
+                                            return (`
+                                                <tr>
+                                                    <td width="75%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 15px 10px 5px 10px;">${item.name}</td>
+                                                    <td width="25%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 15px 10px 5px 10px;">${parseFloat(item.price)*item.soluong}</td>
+                                                </tr>
+                                            `)
+                                        })}
                                     </table>
                                 </td>
                             </tr>
@@ -58,7 +69,7 @@ const templateEmail = (data) => {
                                     <table cellspacing="0" cellpadding="0" border="0" width="100%">
                                         <tr>
                                             <td width="75%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px; border-top: 3px solid #eeeeee; border-bottom: 3px solid #eeeeee;"> TOTAL </td>
-                                            <td width="25%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px; border-top: 3px solid #eeeeee; border-bottom: 3px solid #eeeeee;">${res.locals.totalPriceInCart}</td>
+                                            <td width="25%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px; border-top: 3px solid #eeeeee; border-bottom: 3px solid #eeeeee;">${bill.total}</td>
                                         </tr>
                                     </table>
                                 </td>
@@ -76,7 +87,7 @@ const templateEmail = (data) => {
                                             <tr>
                                                 <td align="left" valign="top" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px;">
                                                     <p style="font-weight: 800;">Delivery Address</p>
-                                                    <p>${req.body.address}</p>
+                                                    <p>${bill.address}</p>
                                                 </td>
                                             </tr>
                                         </table>
@@ -116,7 +127,4 @@ const templateEmail = (data) => {
         </td>
     </tr>
 </table> `
-    )
 }
-
-module.exports.templateEmail =  templateEmail 

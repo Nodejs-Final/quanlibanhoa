@@ -6,27 +6,25 @@
       <table class="table table-striped p-5" width="80%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
         <thead class="thead-light">
           <tr>
-            <th>#</th>
             <th>Mã loại</th>
             <th>Tên loại</th>
             <th>Thao tác</th>
           </tr>
         </thead>
         
-        <% for(var i=0; i < loaihoas.length; i++) { %>
+        {{#each loaihoa}}
           <tr>
-            <th> <%= i+1 %>  </th>
-            <td> <%=loaihoas[i].maloai %> </td>
-            <td> <%=loaihoas[i].tenloai %> </td>
+            <td> {{this.maloai}} </td>
+            <td> {{this.tenloai}} </td>
             <td class="d-flex">
-              <a class="mr-2" href="/loaihoa/update/<%= loaihoas[i]._id %>">
-                <button class="btn btn-primary">Sửa</button>
+              <a href="/loaihoa/update/{{this._id}}" class="mr-2">
+                <button class="btn btn-primary">Sửa</button>             
               </a>
-              <a class="mr-2" href="/loaihoa/delete/<%= loaihoas[i]._id %>">
-                <button class="btn btn-danger">Xóa</button>
-              </a>
+              <form method="POST" action="/loaihoa/delete/{{this._id}}?_method=DELETE">
+                <button class="btn btn-danger" type="submit">Xóa</button>             
+              </form>
             </td>
           </tr>
-        <% } %>
+        {{/each}}
       </table>
     </main>

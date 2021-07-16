@@ -7,7 +7,7 @@
     border-color: rgb(162, 235, 248);
     border-width: thin;
     border-style: solid;
-    width: 200px;
+    width: 237px;
     height: auto;
     z-index: 999;
     top: 38px;
@@ -32,9 +32,9 @@
     display: none;
   }
   
-  a:link,
+  /* a:link,
   :visited,
   :hover,
   :active {
     color: black;
-  }
+  } */

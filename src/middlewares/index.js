@@ -1,11 +1,13 @@
-const isAuthenticated = (req, res,next) => {
-    if(req.session.userInfo !== null) {
-        res.locals.userInfo = req.session.userInfo;
+const cart = (req, res,next) => {
+    if(req.session.cart){
+        var total = req.session.cart.total
+        res.locals.total = total
+        console.log(res.locals.total);
     }
     else{
-        res.locals.userInfo = ''
+        res.locals.total = ''
     }
     next()
 }
 
-module.exports = { isAuthenticated };
+module.exports = { cart };

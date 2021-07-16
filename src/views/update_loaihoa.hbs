@@ -1,36 +1,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
-
-<head>
-    <%- include('../partials/head'); %>
-</head>
-
-<body>
-    <header>
-      <%- include('../partials/header'); %>
-    </header>
     
-    <form class="w-75 m-auto p-5" method="POST" action="/loaihoa/update/<%= loaihoaUpdate._id %> " style="font-size: 1.25rem;">
+    <form class="w-75 m-auto p-5" method="POST" action="/loaihoa/update/{{typeFlower._id}}?_method=PUT" style="font-size: 1.25rem;">
         <div align="center" style="font-size: 2.5rem;">Cập nhật loại hoa</div>
         <div class="form-group">
           <label for="maloai">Mã loại hoa</label>
           <input name="maloai" type="text" id="maloai" class="form-control" placeholder="Nhập mã loại. Ví dụ: Hoa-Cuoi" required
-            value="<%= loaihoaUpdate.maloai %>" />
+            value="{{typeFlower.maloai}}" />
         </div>
         <div class="form-group">
           <label for="tenloai">Tên loại hoa</label>
           <input name="tenloai" type="text" id="tenloai" class="form-control" placeholder="Nhập tên loại hoa. Ví dụ: Hoa cưới" required
-            value="<%= loaihoaUpdate.tenloai %>"/>
+            value="{{typeFlower.tenloai}}"/>
         </div>
 
         <div style="display: flex; flex-direction: column; align-items: center;">
           <button type="submit" class="btn btn-success w-100">Cập nhật</button>
         </div>
       </form>
-    
-    <footer>
-      <%- include('../partials/footer'); %>
-    </footer>
-
-</body>
-
-</html>
